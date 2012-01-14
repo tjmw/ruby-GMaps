@@ -6,8 +6,6 @@ require 'rexml/document'
 
 class TFLBikes < Sinatra::Base
 
-    attr_reader :tfl_bike_data
-
     get '/tfl_bikes.kml' do
         content_type 'text/xml'
 
@@ -31,8 +29,6 @@ class TFLBikes < Sinatra::Base
             stations << station_data
         end
 
-        @tfl_bike_data = stations
-
-        haml :tfl_bikes_kml
+        haml :tfl_bikes_kml, :locals => { :tfl_bike_data => stations }
     end
 end
