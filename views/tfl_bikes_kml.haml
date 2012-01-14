@@ -1,0 +1,9 @@
+!!! XML
+%kml{:xmlns => "http://www.opengis.net/kml/2.2"}
+  %Document
+    - tfl_bike_data.each do |station|
+      %Placemark
+        %name=station['name']
+        %description=station['description']
+        %Point
+          %coordinates="#{station['long']},#{station['long']}"
