@@ -6,6 +6,10 @@ require 'rexml/document'
 
 class TFLBikes < Sinatra::Base
 
+    get '/' do
+          File.read(File.join('public', 'index.html'))
+    end
+
     get '/tfl_bikes.kml' do
         content_type 'text/xml'
 
