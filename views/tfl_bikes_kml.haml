@@ -1,9 +1,14 @@
 !!! XML
 %kml{:xmlns => "http://www.opengis.net/kml/2.2"}
   %Document
+    %Style{:id => "bikeIcon"}
+      %IconStyle
+        %Icon
+          %href http://dl.dropbox.com/u/6313902/cycle-hire-pushpin-icon.gif
     - tfl_bike_data.each do |station|
       %Placemark
         %name=station['name']
         %description=station['description']
+        %styleUrl #bikeIcon
         %Point
           %coordinates="#{station['long']},#{station['lat']}"
