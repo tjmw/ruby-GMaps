@@ -8,7 +8,7 @@ class TFLBikes < Sinatra::Base
     set :root, File.dirname(__FILE__)
 
     get '/bikes' do
-          File.read(File.join('public', 'index.html'))
+          File.read(File.join('public', 'bikes.html'))
     end
 
     get '/tfl_bikes.kml' do
