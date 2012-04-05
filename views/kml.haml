@@ -1,0 +1,14 @@
+!!! XML
+%kml{:xmlns => "http://www.opengis.net/kml/2.2"}
+  %Document
+    %Style{:id => "location"}
+      %IconStyle
+        %Icon
+          %href=icon
+    - data.each do |location|
+      %Placemark
+        %name=location['name']
+        %description=location['description']
+        %styleUrl #location
+        %Point
+          %coordinates="#{location['long']},#{location['lat']}"
