@@ -7,7 +7,9 @@
           %href=icon
     - data.each do |location|
       %Placemark
-        %name=location['name']
+        %name
+          :escaped
+            #{location['name']}
         %description=location['description']
         %styleUrl #location
         %Point
