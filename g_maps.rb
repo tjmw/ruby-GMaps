@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra/base'
 require 'net/http'
 require 'uri'
+require 'csv'
 require 'rexml/document'
 
 class GMaps < Sinatra::Base
@@ -9,6 +10,10 @@ class GMaps < Sinatra::Base
 
     get '/bikes' do
           File.read(File.join('public', 'bikes.html'))
+    end
+
+    get '/allotments' do
+          File.read(File.join('public', 'allotments.html'))
     end
 
     get '/tfl_bikes.kml' do
@@ -33,10 +38,11 @@ class GMaps < Sinatra::Base
             stations << station_data
         end
 
-        haml :kml, :locals => {
-            :data => stations,
-            :icon => 'http://freezing-winter-3097.heroku.com/cycle-hire-pushpin-icon.gif'
-        }
+        haml :kml,
+            :locals => {
+                :data => stations,
+                :icon => 'http://freezing-winter-3097.heroku.com/cycle-hire-pushpin-icon.gif'
+            }
     end
 
     get '/allotments.kml' do
@@ -44,23 +50,30 @@ class GMaps < Sinatra::Base
 
         allotments_url = URI.parse("http://dl.dropbox.com/u/6313902/gla-allotment-locations.csv")
 
-        tfl_xml = REXML::Document.new(
-            Net::HTTP.get_response(tfl_url).body
+        allotments_csv = CSV::Reader.parse(
+            Net::HTTP.get_response(allotments_url).body
         )
+        
+        allotments = []
+        
+        # lose the headers
+        allotments_csv.shift
+        
+        allotments_csv.each do |row|
+            allotment_data = {}
 
-        stations = []
+            allotment_data['name']        = row[2]
+            allotment_data['description'] = row[3]
+            allotment_data['lat']         = row[13]
+            allotment_data['long']        = row[14]
 
-        tfl_xml.elements.each('//stations/station') do |station|
-            station_data = {}
-
-            station_data['name']        = station.get_text('name')
-            station_data['description'] = station.get_text('terminalName')
-            station_data['lat']         = station.get_text('lat')
-            station_data['long']        = station.get_text('long')
-
-            stations << station_data
+            allotments << allotment_data
         end
 
-        haml :tfl_bikes_kml, :locals => { :tfl_bike_data => stations }
+        haml :kml,
+            :locals => {
+                :data => allotments,
+                :icon => 'http://freezing-winter-3097.heroku.com/cycle-hire-pushpin-icon.gif'
+            }
     end
 end
