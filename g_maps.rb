@@ -50,7 +50,7 @@ class GMaps < Sinatra::Base
 
         allotments_url = URI.parse("http://dl.dropbox.com/u/6313902/gla-allotment-locations.csv")
 
-        allotments_csv = CSV::Reader.parse(
+        allotments_csv = CSV.parse(
             Net::HTTP.get_response(allotments_url).body
         )
         
