@@ -4,7 +4,7 @@ require 'net/http'
 require 'uri'
 require 'rexml/document'
 
-class TFLBikes < Sinatra::Base
+class GMaps < Sinatra::Base
     set :root, File.dirname(__FILE__)
 
     get '/bikes' do
