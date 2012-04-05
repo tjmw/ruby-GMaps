@@ -65,8 +65,8 @@ class GMaps < Sinatra::Base
 
             allotment_data['name']        = Iconv.iconv("LATIN1//IGNORE", "UTF-8", row[2]).join
             allotment_data['description'] = '' # row[3]
-            allotment_data['lat']         = row[13]
-            allotment_data['long']        = row[14]
+            allotment_data['lat']         = row[14]
+            allotment_data['long']        = row[13]
 
             allotments << allotment_data
         end
