@@ -7,7 +7,7 @@ require 'rexml/document'
 class TFLBikes < Sinatra::Base
     set :root, File.dirname(__FILE__)
 
-    get '/' do
+    get '/bikes' do
           File.read(File.join('public', 'index.html'))
     end
 
@@ -19,7 +19,6 @@ class TFLBikes < Sinatra::Base
         tfl_xml = REXML::Document.new(
             Net::HTTP.get_response(tfl_url).body
         )
-
 
         stations = []
 
