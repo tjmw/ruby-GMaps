@@ -63,8 +63,8 @@ class GMaps < Sinatra::Base
         allotments_csv.each do |row|
             allotment_data = {}
 
-            allotment_data['name']        = Iconv.iconv("LATIN1//IGNORE", "UTF-8", row[2]).join
-            allotment_data['description'] = '' # row[3]
+            allotment_data['name']        = row[2]
+            allotment_data['description'] = row[3]
             allotment_data['lat']         = row[14]
             allotment_data['long']        = row[13]
 

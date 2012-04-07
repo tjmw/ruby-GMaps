@@ -10,7 +10,9 @@
         %name
           :escaped
             #{location['name']}
-        %description=location['description']
+        %description
+          :escaped
+            #{location['description']}
         %styleUrl #location
         %Point
           %coordinates="#{location['long']},#{location['lat']}"
