@@ -9,12 +9,16 @@ require 'iconv'
 class GMaps < Sinatra::Base
     set :root, File.dirname(__FILE__)
 
+    get '/' do
+        haml :index
+    end
+
     get '/bikes' do
-          File.read(File.join('public', 'bikes.html'))
+        File.read(File.join('public', 'bikes.html'))
     end
 
     get '/allotments' do
-          File.read(File.join('public', 'allotments.html'))
+        File.read(File.join('public', 'allotments.html'))
     end
 
     get '/tfl_bikes.kml' do
