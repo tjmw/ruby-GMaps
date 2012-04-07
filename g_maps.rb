@@ -78,7 +78,7 @@ class GMaps < Sinatra::Base
         haml :kml,
             :locals => {
                 :data => allotments,
-                :icon => "http://#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
+                :icon => "http://#{request.env['SERVER_NAME']}/apple-icon.gif"
             }
     end
 end
