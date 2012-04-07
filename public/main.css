@@ -2,7 +2,10 @@ body {
     font-family: georgia, serif;
     font-size: 64px;
     padding: 0;
-    margin: 5% 10% 5% 10%;
+}
+
+div {
+    margin: auto;
 }
 
 a {
