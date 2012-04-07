@@ -42,7 +42,7 @@ class GMaps < Sinatra::Base
         haml :kml,
             :locals => {
                 :data => stations,
-                :icon => "#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
+                :icon => "http://#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
             }
     end
 
@@ -74,7 +74,7 @@ class GMaps < Sinatra::Base
         haml :kml,
             :locals => {
                 :data => allotments,
-                :icon => "#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
+                :icon => "http://#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
             }
     end
 end
