@@ -42,7 +42,7 @@ class GMaps < Sinatra::Base
         haml :kml,
             :locals => {
                 :data => stations,
-                :icon => 'http://freezing-winter-3097.heroku.com/cycle-hire-pushpin-icon.gif'
+                :icon => "#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
             }
     end
 
@@ -74,7 +74,7 @@ class GMaps < Sinatra::Base
         haml :kml,
             :locals => {
                 :data => allotments,
-                :icon => 'http://freezing-winter-3097.heroku.com/cycle-hire-pushpin-icon.gif'
+                :icon => "#{request.env['SERVER_NAME']}/cycle-hire-pushpin-icon.gif"
             }
     end
 end
