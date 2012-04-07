@@ -69,8 +69,10 @@ class GMaps < Sinatra::Base
 
             allotment_data['name']        = row[2]
             allotment_data['description'] = row[3]
-            allotment_data['lat']         = row[14]
-            allotment_data['long']        = row[13]
+
+            # The GLA data has latitude and longitude reversed
+            allotment_data['lat']  = row[14]
+            allotment_data['long'] = row[13]
 
             allotments << allotment_data
         end
