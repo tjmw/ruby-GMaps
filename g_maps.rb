@@ -24,6 +24,7 @@ class GMaps < Sinatra::Base
     get '/tfl_bikes.kml' do
         content_type 'text/xml'
 
+        # Fake TFL format feed
         tfl_url = URI.parse("http://dl.dropbox.com/u/6313902/livecyclehire-example.txt")
 
         tfl_xml = REXML::Document.new(
@@ -53,6 +54,7 @@ class GMaps < Sinatra::Base
     get '/allotments.kml' do
         content_type 'text/xml'
 
+        # Fake GLA format feed
         allotments_url = URI.parse("http://dl.dropbox.com/u/6313902/gla-allotment-locations.csv")
 
         allotments_csv = CSV.parse(
