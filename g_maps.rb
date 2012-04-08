@@ -14,11 +14,17 @@ class GMaps < Sinatra::Base
     end
 
     get '/bikes' do
-        File.read(File.join('public', 'bikes.html'))
+        erb :map,
+            :locals => {
+                :kml_location => "http://#{request.env['SERVER_NAME']}/tfl_bikes.kml?v=4"
+            }
     end
 
     get '/allotments' do
-        File.read(File.join('public', 'allotments.html'))
+        erb :map,
+            :locals => {
+                :kml_location => "http://#{request.env['SERVER_NAME']}/allotments.kml?v=2"
+            }
     end
 
     get '/tfl_bikes.kml' do
